@@ -6,7 +6,6 @@ import { Progress } from 'components/ui/progress';
 const GET_TOTAL_UP = gql`
 query
 {
-  
     transaction(where: 
       {type: {_in: ["up", "down"]}, 
       path: {_like: "/johvi/div-01/%", 
@@ -42,11 +41,11 @@ export const Audits = () => {
 
     if (loading) return <div>Loading...</div>
     return (
-        <div className='w-[25%] h-[20%] bg-gray-800 box-border min flex flex-col p-4 mt-4 min-w-[350px] min-h-[250px] space-y-4'>
+        <div className='w-[25%] h-[20%] bg-gray-800 box-border min flex flex-col p-4 mt-4 min-w-[317px] min-h-[250px] space-y-4'>
             <h1>Audits ratio</h1>
             <div className='flex'>
                 <div className='flex items-center'>
-                    <Progress className='w-[200px]' barBackground='bg-gray-800' barColor='bg-blue-200' value={getRatio(data.transaction).up / getRatio(data.transaction).down * 100} />
+                    <Progress className='w-[180px]' barBackground='bg-gray-800' barColor='bg-blue-200' value={getRatio(data.transaction).up / getRatio(data.transaction).down * 100} />
                 </div>
                 <div className='pl-[46px]'>
                     <div className='flex'>
@@ -61,7 +60,7 @@ export const Audits = () => {
             </div>
             <div className='flex'>
                 <div className='flex'>
-                    <Progress barColor='bg-red-400' className='w-[200px] mt-1' value={100} />
+                    <Progress barColor='bg-red-400' className='w-[180px] mt-1' value={100} />
                 </div>
                 <div className='pl-4'>
                     <div className='flex'>

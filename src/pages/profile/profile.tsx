@@ -6,7 +6,9 @@ import { Navbar } from 'components/ui/navbar';
 import { User } from './components/user';
 import { Experience } from './components/experience';
 import { Audits } from './components/audits';
-import { ProgressChart } from './components/progressChart';
+import  ProgressChart  from './components/progressChart';
+import  PassFail  from './components/pass-fail';
+
 
 export const Profile = () => {
 
@@ -44,18 +46,19 @@ export const Profile = () => {
   return (
     <div className="text-white flex flex-col h-screen">
       <Navbar onLogout={handleLogout} />
-      <div className='px-[6%] py-[4%] flex-grow'>
+      <div className='px-[6%] py-[4%] flex-grow m-auto'>
         <User />
         <div>
           <h1 className='mt-4 2xl'>DIV 01 #190</h1>
         </div>
-        <div className='flex'>
-          <div>
+        <div className='flex flex-col lg:flex-row lg:pl-3 pl-0'>
+          <div className='flex lg:flex-col items-center justify-center'>
             <Experience />
             <Audits />
           </div>
           <ProgressChart />
         </div>
+        <PassFail/>
       </div>
     </div>
   )
