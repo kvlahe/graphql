@@ -1,11 +1,15 @@
+import React, { useRef, useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
-import { Chart, registerables } from 'chart.js';
-import { useEffect, useState } from 'react';
-import LineChart from 'components/ui/Linechart';
-import { parseISO, format } from 'date-fns';
+import * as d3 from "d3";
 
+const margin = { top: 70, right: 30, bottom: 40, left: 60 };
+const width = 600 - margin.left - margin.right;
+const height = 400 - margin.top - margin.bottom;
 
-const GET_TOTAL_UP = gql`
+const x = d3.scaleTime().range([0, width]);
+const y = d3.scaleLinear().range([height, 0]);
+
+const GET_TOTAL_XP = gql`
 query {
     transaction(where: 
       {type: {_eq: "xp"}, 
@@ -19,62 +23,75 @@ query {
 }
 `;
 
+export const ProgressChart = () => {
+  const { error, data, loading } = useQuery(GET_TOTAL_XP);
+  const ref = useRef<SVGSVGElement | null>(null);
 
-Chart.register(...registerables);
+  useEffect(() => {
+    if (loading || !ref.current) return;
+    const convertedData = [...data.transaction].map((item: any) => ({
+      date: new Date(item.createdAt),
+      value: item.amount
+    }))
+      .sort((a: { date: Date; value: number }, b: { date: Date; value: number }) => a.date.getTime() - b.date.getTime())
+      .reduce((acc: { date: Date; value: number }[], curr: { date: Date; value: number }, idx: number) => {
+        return [...acc, { date: curr.date, value: (acc[idx - 1]?.value || 0) + curr.value }];
+      }, []);
 
-export default function ProgressChart() {
-  const { error, data, loading } = useQuery(GET_TOTAL_UP);
-  const [chartData, setChartData] = useState({
-    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-    datasets: [
-      {
-        label: 'My First Dataset',
-        data: [12, 19, 3, 5, 2, 3],
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1,
-        stepped: true,
-      },
-    ],
-  });
- useEffect(() => {
-  if (!loading && data) {
-    // Map the transactions to an array of { amount, month } objects
-    const transactions = data.transaction.map((item: any) => ({
-      amount: item.amount,
-      date: parseISO(item.createdAt),
-      month: format(parseISO(item.createdAt), 'MMM yyyy'),
-    }));
+    console.log(convertedData)
 
-    // Sort the transactions by date
-    transactions.sort((a:any, b:any) => (a.date > b.date ? 1 : -1));
+    const svg = d3.select(ref.current)
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("stroke", "white")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    // Map the sorted transactions to separate arrays of amounts and months
-    const amounts = transactions.reduce((acc: number[], item: any, index: number) => {
-      const previousAmount = (index > 0) ? acc[index - 1] : 0;
-      acc.push(previousAmount + item.amount);
-      return acc;
-    }, []);
-    const months = transactions.map((item: any) => item.month);
+    const now = new Date();
+    const sixMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 6, now.getDate());
 
-    setChartData({
-      labels: months,
-      datasets: [
-        {
-          label: 'My First Dataset',
-          data: amounts,
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1,
-          stepped: true,
-        },
-      ],
-    });
-  }
-}, [data]);
+    x.domain([sixMonthsAgo, now]);
+
+    const extent = d3.extent(convertedData, (d: { date: Date; value: number }) => d.date);
+    x.domain([sixMonthsAgo, now]);
+
+    const max = d3.max(convertedData, (d: { date: Date; value: number }) => d.value / 1000);
+    y.domain([0, max !== undefined ? max : 1000]);
+
+    const xAxis = d3.axisBottom(x)
+      .ticks(d3.timeMonth.every(1))
+      .tickFormat(d3.timeFormat("%b %Y") as unknown as (n: Date | d3.NumberValue) => string);
+
+    svg.append("g")
+      .attr("transform", `translate(0,${height})`)
+      .call(xAxis);
+
+    svg.append("g")
+      .call(d3.axisLeft(y));
+
+    const line = d3.line<{ date: Date; value: number }>()
+      .x(d => x(d.date))
+      .y(d => y(d.value / 1000))
+      .curve(d3.curveStep);
+
+    svg.append("path")
+      .datum(convertedData)
+      .attr("fill", "none")
+      .attr("stroke", "white")
+      .attr("stroke-width", 1)
+      .attr("d", line);
+  }, [loading, data]);
+
+  if (loading) return <div>Loading...</div>
+
   return (
-    <div className="App">
-      <LineChart chartData={chartData} />
+    <div className='flex justify-center'>
+      <div className='bg-gray-800 lg:w-[600px] w-[650px] m-4 mb-0 flex flex-col'>
+        <div className='w-full'>
+          <p className='pl-8 pt-4 text-xl'>XP Progession</p>
+        </div>
+        <svg ref={ref} ></svg>
+      </div>
     </div>
-  );
+  )
 }

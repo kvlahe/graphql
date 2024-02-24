@@ -17,7 +17,7 @@ export const User = () => {
     if (loading) return <div>Loading...</div>
     return (
        <div>
-            <h1 className='text-3xl'>Welcome, {data.user[0].login}!</h1>
+            <h1 className='text-3xl ml-4'>Welcome, {data.user[0].login}!</h1>
        </div>
     )
 }

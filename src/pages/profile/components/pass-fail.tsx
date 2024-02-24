@@ -1,6 +1,7 @@
 import { useQuery, gql } from '@apollo/client'
 import React from "react";
 import { AxisOptions, Chart } from "react-charts";
+import { formatCategory } from 'lib/utils';
 
 
 const GET_GRADES = gql`
@@ -56,20 +57,20 @@ export default function PassFail() {
   );
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :</p>;
-  
-  const categories = ['Piscine_Go', 'Piscine_Js', "Div-01"];
-  
+
+  const categories = ['Piscine_Go', 'Piscine_Js'];
+
   const transformedData = categories.map((category) => {
     const progress = data[category];
     if (!progress) return [];
     const { pass, fail } = getRatio(progress);
-  
+
     return [
       {
         label: 'PASS',
         data: [
           {
-            primary: category,
+            primary: formatCategory(category),
             value: pass,
           },
         ],
@@ -78,7 +79,7 @@ export default function PassFail() {
         label: 'FAIL',
         data: [
           {
-            primary: category,
+            primary: formatCategory(category),
             value: fail,
           },
         ],
@@ -86,12 +87,14 @@ export default function PassFail() {
     ];
   }).flat();
 
- 
+
 
   return (
-    <div className='flex justify-center mt-4 items-center'>
-      <br />
-      <br />
+    <div className='ml-4 flex justify-center mt-4 items-center bg-gray-800 flex-col w-[95%] lg:w-[97%]'>
+      <div className='w-full'>
+        <p className='pl-8 pt-4 text-xl'>Pass/Fail Ratio</p>
+      </div>
+    
       <div className='bg-gray-800 border-none w-[95%] lg:w-[97%] h-[400px]'>
         <Chart
           options={{

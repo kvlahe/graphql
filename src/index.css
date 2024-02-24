@@ -77,6 +77,10 @@
   
 }
 
+html, body, :root {
+  min-width: 780px;
+}
+
 
 .tickLabel {
   fill: white !important;
