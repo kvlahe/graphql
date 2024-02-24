@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/graphql/static/css/main.87eefe1a.css",
+    "main.js": "/graphql/static/js/main.ebbccfb6.js",
+    "static/js/592.25465a74.chunk.js": "/graphql/static/js/592.25465a74.chunk.js",
+    "static/media/ibm-plex-mono-latin-400-normal.woff2": "/graphql/static/media/ibm-plex-mono-latin-400-normal.57685f70bce71bc2281d.woff2",
+    "static/media/ibm-plex-mono-latin-ext-400-normal.woff2": "/graphql/static/media/ibm-plex-mono-latin-ext-400-normal.4eb454f797fc14173977.woff2",
+    "static/media/ibm-plex-mono-latin-400-normal.woff": "/graphql/static/media/ibm-plex-mono-latin-400-normal.a249eaef7f811a5b3ef8.woff",
+    "static/media/ibm-plex-mono-latin-ext-400-normal.woff": "/graphql/static/media/ibm-plex-mono-latin-ext-400-normal.9e8e59cd24901250b690.woff",
+    "static/media/ibm-plex-mono-cyrillic-400-normal.woff2": "/graphql/static/media/ibm-plex-mono-cyrillic-400-normal.6ac19c59b273fe60dfcc.woff2",
+    "static/media/ibm-plex-mono-cyrillic-400-normal.woff": "/graphql/static/media/ibm-plex-mono-cyrillic-400-normal.c348deac43fa5748edea.woff",
+    "static/media/ibm-plex-mono-cyrillic-ext-400-normal.woff2": "/graphql/static/media/ibm-plex-mono-cyrillic-ext-400-normal.bbad4d1918b96229653b.woff2",
+    "static/media/ibm-plex-mono-vietnamese-400-normal.woff2": "/graphql/static/media/ibm-plex-mono-vietnamese-400-normal.530da8a08402532b9ded.woff2",
+    "static/media/ibm-plex-mono-cyrillic-ext-400-normal.woff": "/graphql/static/media/ibm-plex-mono-cyrillic-ext-400-normal.18dd695e5b1103c22279.woff",
+    "static/media/ibm-plex-mono-vietnamese-400-normal.woff": "/graphql/static/media/ibm-plex-mono-vietnamese-400-normal.442fb799b2a313edbc10.woff",
+    "index.html": "/graphql/index.html",
+    "main.87eefe1a.css.map": "/graphql/static/css/main.87eefe1a.css.map",
+    "main.ebbccfb6.js.map": "/graphql/static/js/main.ebbccfb6.js.map",
+    "592.25465a74.chunk.js.map": "/graphql/static/js/592.25465a74.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.87eefe1a.css",
+    "static/js/main.ebbccfb6.js"
+  ]
+}
