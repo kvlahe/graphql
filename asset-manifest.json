@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/graphql/static/css/main.87eefe1a.css",
-    "main.js": "/graphql/static/js/main.ebbccfb6.js",
+    "main.js": "/graphql/static/js/main.c9de657b.js",
     "static/js/592.25465a74.chunk.js": "/graphql/static/js/592.25465a74.chunk.js",
     "static/media/ibm-plex-mono-latin-400-normal.woff2": "/graphql/static/media/ibm-plex-mono-latin-400-normal.57685f70bce71bc2281d.woff2",
     "static/media/ibm-plex-mono-latin-ext-400-normal.woff2": "/graphql/static/media/ibm-plex-mono-latin-ext-400-normal.4eb454f797fc14173977.woff2",
@@ -15,11 +15,11 @@
     "static/media/ibm-plex-mono-vietnamese-400-normal.woff": "/graphql/static/media/ibm-plex-mono-vietnamese-400-normal.442fb799b2a313edbc10.woff",
     "index.html": "/graphql/index.html",
     "main.87eefe1a.css.map": "/graphql/static/css/main.87eefe1a.css.map",
-    "main.ebbccfb6.js.map": "/graphql/static/js/main.ebbccfb6.js.map",
+    "main.c9de657b.js.map": "/graphql/static/js/main.c9de657b.js.map",
     "592.25465a74.chunk.js.map": "/graphql/static/js/592.25465a74.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.87eefe1a.css",
-    "static/js/main.ebbccfb6.js"
+    "static/js/main.c9de657b.js"
   ]
 }
