@@ -2,7 +2,7 @@
   "name": "graphql",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kveber.github.io/graphql",
+  "homepage": " https://kvlahe.github.io/graphql",
   "dependencies": {
     "@apollo/client": "^3.9.4",
     "@fontsource/ibm-plex-mono": "^5.0.8",
