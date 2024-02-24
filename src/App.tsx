@@ -1,7 +1,7 @@
 
 import { Profile } from "./pages/profile/profile";
 import { SignIn } from "./pages/signIn/signin";
-import { BrowserRouter as Router, useRoutes, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
 
 const AppWrapper = () => {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <App />
     </Router>
   );
