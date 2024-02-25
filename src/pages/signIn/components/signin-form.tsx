@@ -80,7 +80,7 @@ export const SignInForm = () => {
                 toast.error("Graphql request failed")
             }
         } catch (error) {
-            toast.error("Something went wrong")
+            toast.error("Invalid credentials. Please try again.")
         } finally {
             
             setLoading(false);
