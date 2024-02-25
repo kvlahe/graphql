@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import { Profile } from "./pages/profile/profile";
 import { SignIn } from "./pages/signIn/signin";
 import { BrowserRouter as Router, useRoutes } from "react-router-dom";
@@ -7,6 +8,9 @@ import Cookies from "universal-cookie";
 function App() {
   const cookies = new Cookies();
   const token = cookies.get('token');
+  useEffect(() => {
+    document.title = "GraphQL"
+  })
 
 
 
