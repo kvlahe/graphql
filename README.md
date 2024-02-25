@@ -2,9 +2,12 @@
 
 The objective of this project is to learn the GraphQL query language, by creating my own profile page.
 
+
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install` to install required dependencies
 
 ### `npm start`
 
