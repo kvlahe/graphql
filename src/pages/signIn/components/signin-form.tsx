@@ -26,7 +26,6 @@ export const SignInForm = () => {
         resolver: zodResolver(formSchema),
     });
 
-
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(null)
@@ -50,8 +49,6 @@ export const SignInForm = () => {
                 sameSite: 'strict',
                 maxAge: 60 * 60 * 24 * 7
             })
-            console.log(cookies)
-
 
             const userProgress = {
                 query: `

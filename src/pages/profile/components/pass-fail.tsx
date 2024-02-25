@@ -32,7 +32,6 @@ function getRatio(progress: any): any {
 
 export default function PassFail() {
   const { error, data, loading } = useQuery(GET_GRADES);
-  console.log(data)
 
   const primaryAxis = React.useMemo<
     AxisOptions<typeof data[number]["data"][number]>
@@ -56,7 +55,10 @@ export default function PassFail() {
     []
   );
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :</p>;
+  if (error) {
+    console.log(error)
+    return <div></div>
+} 
 
   const categories = ['Piscine_Go', 'Piscine_Js'];
 

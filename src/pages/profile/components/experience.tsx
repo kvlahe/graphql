@@ -1,4 +1,3 @@
-import React from 'react'
 import { useQuery, gql } from '@apollo/client'
 import { ConvertXp } from 'utils/convertxp'
 
@@ -20,10 +19,12 @@ const GET_TOTAL_XP = gql`
 
 export const Experience = () => {
     const { error, data, loading } = useQuery(GET_TOTAL_XP);
+    if (error) {
+        console.log(error)
+        return <div></div>
+    } 
     if (loading) return <div>Loading...</div>
-    console.log(data)
     const totalXp = data.transaction.reduce((total: number, transaction: { amount: number }) => total + transaction.amount, 0)
-    const totalXpInKb = Math.round(totalXp / (1000));
     return (
         <div className='w-[25%] h-[12%] bg-gray-800 box-border min flex flex-col p-4 mt-4 mr-4 lg:mr-0 min-w-[317px] min-h-[250px]'>
             <p className='h-1/3'>Your current XP:</p>

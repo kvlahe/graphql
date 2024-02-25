@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import * as d3 from "d3";
 
@@ -26,7 +26,7 @@ query {
 export const ProgressChart = () => {
   const { error, data, loading } = useQuery(GET_TOTAL_XP);
   const ref = useRef<SVGSVGElement | null>(null);
-
+  
   useEffect(() => {
     if (loading || !ref.current) return;
     const convertedData = [...data.transaction].map((item: any) => ({
@@ -37,8 +37,6 @@ export const ProgressChart = () => {
       .reduce((acc: { date: Date; value: number }[], curr: { date: Date; value: number }, idx: number) => {
         return [...acc, { date: curr.date, value: (acc[idx - 1]?.value || 0) + curr.value }];
       }, []);
-
-    console.log(convertedData)
 
     const svg = d3.select(ref.current)
       .attr("width", width + margin.left + margin.right)
@@ -83,12 +81,16 @@ export const ProgressChart = () => {
   }, [loading, data]);
 
   if (loading) return <div>Loading...</div>
+  if (error) {
+    console.log(error)
+    return <div></div>
+} 
 
   return (
     <div className='flex justify-center'>
       <div className='bg-gray-800 lg:w-[600px] w-[650px] m-4 mb-0 flex flex-col'>
         <div className='w-full'>
-          <p className='pl-8 pt-4 text-xl'>XP Progession</p>
+          <p className='pl-8 pt-4 text-xl'>XP Progession(kB)</p>
         </div>
         <svg ref={ref} ></svg>
       </div>

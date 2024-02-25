@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { SignInForm } from "./components/signin-form"
 import Auth from "middleware"
 import Cookies from "universal-cookie";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export const SignIn = () => {
@@ -62,7 +62,6 @@ export const SignIn = () => {
             </g>
           </svg>
         </div>
-
       </div>
     </div>
   )

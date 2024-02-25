@@ -1,4 +1,3 @@
-import React from 'react'
 import { useQuery, gql } from '@apollo/client'
 
 const GET_USER = gql`
@@ -13,7 +12,11 @@ query {
 export const User = () => {
     const {error, data, loading} = useQuery(GET_USER)
 
-    console.log({error, data, loading})
+    if (error) {
+        console.log(error)
+        return <div></div>
+    } 
+
     if (loading) return <div>Loading...</div>
     return (
        <div>

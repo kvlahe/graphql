@@ -1,6 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
 import { ConvertXp } from 'utils/convertxp'
-import React from 'react'
 import { Progress } from 'components/ui/progress';
 
 const GET_TOTAL_UP = gql`
@@ -39,6 +38,10 @@ function getRatio(transactions: any): RatioProps {
 export const Audits = () => {
     const { error, data, loading } = useQuery(GET_TOTAL_UP);
 
+    if (error) {
+        console.log(error)
+        return <div></div>
+    }
     if (loading) return <div>Loading...</div>
     return (
         <div className='w-[25%] h-[20%] bg-gray-800 box-border min flex flex-col p-4 mt-4 min-w-[317px] min-h-[250px] space-y-4'>
@@ -73,10 +76,9 @@ export const Audits = () => {
                     </div>
                 </div>
             </div>
-            {/* todo: make colors for 0.5 and above too */}
             <div className={`text-6xl !mt-1 ${Number(getRatio(data.transaction).ratio) < 0.5 ? 'text-red-400' : ''}`}>
-    {getRatio(data.transaction).ratio}
-</div>
+                {getRatio(data.transaction).ratio}
+            </div>
         </div>
     )
 }

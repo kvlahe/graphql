@@ -17,7 +17,6 @@ export const Profile = () => {
     navigate('/');
   }
 
-
   const navigate = useNavigate();
   const token = new Cookies().get('token');
   const [user, setUser] = useState(null);
