@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+## GraphQL
 
 The objective of this project is to learn the GraphQL query language, by creating my own profile page.
 
@@ -14,7 +14,7 @@ Open [http://localhost:3000/graphql](http://localhost:3000/graphql) to view it i
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-## The page is hosted on: [https://kvlahe.github.io/graphql]
+## The page is hosted on: https://kvlahe.github.io/graphql
 
 
 #### Author  
